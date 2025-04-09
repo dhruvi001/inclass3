@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-service
+  namespace: db
+spec:
+  selector:
+    id: c0928743
+    app: db
+    env: dev
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306

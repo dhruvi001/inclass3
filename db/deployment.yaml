@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db
+  namespace: db
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      id: c0928743
+      app: db
+      env: dev
+  template:
+    metadata:
+      labels:
+        id: c0928743
+        app: db
+        env: dev
+    spec:
+      containers:
+        - name: mariadb
+          image: mariadb:10.6.4-focal
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: rootpass
+            - name: MYSQL_DATABASE
+              value: wp_db
+            - name: MYSQL_USER
+              value: wp_user
+            - name: MYSQL_PASSWORD
+              value: wp_pass
+          ports:
+            - containerPort: 3306

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wp-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      id: C0928743
+      app: wp-app
+      env: dev
+  template:
+    metadata:
+      labels:
+        id: C0928743
+        app: wp-app
+        env: dev
+    spec:
+      containers:
+        - name: wordpress
+          image: wordpress:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: WORDPRESS_DB_HOST
+              value: db-service.db.svc.cluster.local
+            - name: WORDPRESS_DB_USER
+              value: 3324_user
+            - name: WORDPRESS_DB_PASSWORD
+              value: C0928743
+            - name: WORDPRESS_DB_NAME
+              value: C0928743
+
